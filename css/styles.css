@@ -6,3 +6,8 @@ html {
 h1 {
   font-family: 'Courgette', cursive;
 }
+
+body, html {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
