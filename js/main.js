@@ -5,36 +5,34 @@ $(document).ready(function(){
       todo: {
         title: '',
         desc: '',
-        date: '',
-        complete: false
+        date: ''
       },
       ToDos: []
     },
     methods: {
       getTodos: function() {
         this.ToDos = (localStorage.getItem('Todo') !== null) ? JSON.parse(localStorage.getItem('Todo')) : [];
-        console.log(this.ToDos)
       },
 
       addTodo: function() {
         this.ToDos.push(this.todo);
-        console.log(this.ToDos)
         localStorage.setItem('Todo', JSON.stringify(this.ToDos));
         this.getTodos();
         this.clearForm();
       },
 
-      removeTodo: function(todo) {
-       var index = this.ToDos.indexOf(todo);
-       this.ToDos.splice(index, 1);
-       localStorage.setItem('Todo', JSON.stringify(this.ToDos));
-       console.log(this.ToDos);
+      editTodo: function(todo) {
+
       },
 
-      completeToDo: function(todo) {
-       todo.complete = true;
-       localStorage.setItem('Todo', JSON.stringify(this.ToDos));
-       console.log(todo);
+      removeTodo: function(todo) {
+        if(confirm("Are you sure you want to delete ToDo?")){
+          var index = this.ToDos.indexOf(todo);
+          this.ToDos.splice(index, 1);
+          localStorage.setItem('Todo', JSON.stringify(this.ToDos));
+        } else {
+          alert("ToDo has not been deleted")
+        }
       },
 
       clearForm: function() {
