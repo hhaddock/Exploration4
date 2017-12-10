@@ -6,6 +6,7 @@ $(document).ready(function(){
         title: '',
         desc: '',
         date: '',
+        complete: false
       },
       ToDos: []
     },
@@ -23,8 +24,17 @@ $(document).ready(function(){
         this.clearForm();
       },
 
-      removeTodo: function() {
+      removeTodo: function(todo) {
+       var index = this.ToDos.indexOf(todo);
+       this.ToDos.splice(index, 1);
+       localStorage.setItem('Todo', JSON.stringify(this.ToDos));
+       console.log(this.ToDos);
+      },
 
+      completeToDo: function(todo) {
+       todo.complete = true;
+       localStorage.setItem('Todo', JSON.stringify(this.ToDos));
+       console.log(todo);
       },
 
       clearForm: function() {

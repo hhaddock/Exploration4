@@ -14,7 +14,7 @@
   <body>
     <div id="app">
       <div class="container">
-        <h1 id="title" class="center-align hide">Vue JS ToDo Application</h1>
+        <h1 id="title" class="center-align">Vue JS ToDo Application</h1>
         <hr>
       </div>
       <br>
@@ -22,7 +22,7 @@
         <div class="col s12 m5">
           <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <span class="card-title">Add ToDo: </span>
+              <h2 class="card-title"><strong>Add ToDo:</strong></h2>
               <hr>
               <input v-model="todo.title" placeholder="Title">
               <input v-model="todo.desc" placeholder="Description">
@@ -34,34 +34,38 @@
           </div>
         </div>
 
-        <div class="col s12 m7">
-          <div v-for="todo in ToDos">
+       <div class="col s12 m7">
+
+        <div class="card blue-grey darken-1">
+          <div class="card-content white-text">
+            <h2 class="card-title"><strong>ToDo List:</strong></h2>
+            <hr>
+          </div>
+        </div>
+
+          <div v-for="todo in ToDos" class="todos">
             <div class="card blue-grey darken-1">
             <div class="card-content white-text">
-              <span class="card-title left-align">{{todo.title}} <span class="right-align">{{todo.date}}</span></span>
+              <span class="card-title left-align">{{todo.title}}</span>
               <hr>
               <p>{{todo.desc}}</p>
+              <span class="right-align">{{todo.date}}</span>
+
+
+              <div class="switch">
+                <label>
+                  Incomplete
+                  <input type="checkbox" v-on:click="completeToDo(todo)">
+                  <span class="lever"></span>
+                  Complete
+                </label>
+              </div>
+
             </div>
             <div class="card-action">
-              <button v-on:click="removeTodo" class="right-align waves-effect waves-light btn red darken-3">Remove ToDo</button>
+              <button v-on:click="removeTodo(todo)" class="right-align waves-effect waves-light btn red darken-3">Remove ToDo</button>
             </div>
           </div>
-
-          <!-- <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">ToDo List:</span>
-              <hr>
-              <div id="ToDos" v-for="todo in ToDos">
-                <h4 class="left-align">Title: {{todo.title}}</h4>
-                <span class="left-align">Description: {{todo.desc}}</span>
-                <br>
-                <span class="left-align">Date: {{todo.date}}</span>
-                <br>
-                <button v-on:click="addTodo" class="waves-effect waves-light btn">Remove ToDo</button>
-                <hr>
-              </div>
-            </div>
-          </div> -->
         </div>
       </div>
     </div>
